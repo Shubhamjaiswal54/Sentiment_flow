@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import Fastify from 'fastify';
 import apiRoutes from './api';
+import cors from '@fastify/cors';
 
 // Load environment variables
 dotenv.config();
@@ -8,6 +9,11 @@ dotenv.config();
 // Create Fastify instance
 const fastify = Fastify({
   logger: true
+});
+
+// Register CORS plugin
+fastify.register(cors, {
+  origin: '*', // Adjust this in production for security
 });
 
 // Register API routes
