@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String     @id @default(cuid())
+  address    String     @unique
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  strategies Strategy[]
+}
+
+model Strategy {
+  id                String         @id @default(cuid())
+  ownerAddress      String
+  marketId          String
+  sentimentTag      String
+  minPredictionProb Float
+  minSentimentScore Float
+  notionalAmount    Float
+  maxSlippageBps    Int
+  expiryTimestamp   DateTime
+  status            StrategyStatus @default(ACTIVE)
+  lastExecutedAt    DateTime?
+  lastTxHash        String?
+  onchainStrategyId BigInt?
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  executionLogs     ExecutionLog[]
+  User              User?          @relation(fields: [userId], references: [id])
+  userId            String?
+}
+
+model MarketSnapshot {
+  id          String   @id @default(cuid())
+  marketId    String
+  timestamp   DateTime
+  probability Float
+  createdAt   DateTime @default(now())
+}
+
+model SentimentSnapshot {
+  id        String   @id @default(cuid())
+  tag       String
+  timestamp DateTime
+  score     Float
+  createdAt DateTime @default(now())
+}
+
+model ExecutionLog {
+  id         String   @id @default(cuid())
+  strategyId String
+  timestamp  DateTime @default(now())
+  success    Boolean
+  txHash     String?
+  reason     String?
+  strategy   Strategy @relation(fields: [strategyId], references: [id], onDelete: Cascade)
+}
+
+enum StrategyStatus {
+  ACTIVE
+  PENDING
+  EXECUTED
+  EXPIRED
+  PAUSED
+}

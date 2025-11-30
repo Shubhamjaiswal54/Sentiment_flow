@@ -1,0 +1,21 @@
+[package]
+name = "SentimentFlow"
+version = "1.0.0"
+authors = ["Shubham <1054shubham@gmail.com>"]
+
+[addresses]
+# Replace the string below with your actual account address.
+# e.g., "0x1234..." or "0xcafe"
+sentiment_flow = "0xaac47235972571d797c92678c6060d6a7e3f755d51a3a3b0bfad8def87ad219f" 
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-framework.git"
+subdir = "aptos-framework"
+rev = "mainnet"
+
+[dependencies.AptosStdlib]
+git = "https://github.com/aptos-labs/aptos-framework.git"
+subdir = "aptos-stdlib"
+rev = "mainnet"
+
+[dev-dependencies]
