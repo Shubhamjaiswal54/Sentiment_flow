@@ -1,14 +1,8 @@
-Of course. Here is a comprehensive `README.md` file for the entire SentimentFlow project, covering both the backend and frontend.
-
----
-
 # SentimentFlow: Autonomous, Prediction-Driven DeFi Trading
 
 SentimentFlow is a cutting-edge DeFi trading system that bridges the gap between real-world events and on-chain execution. It allows users to create automated trading strategies that trigger based on a combination of prediction market probabilities and social media sentiment.
 
 Built on the high-speed Aptos blockchain, SentimentFlow uses a unique "MCP Brain" architecture to eliminate slow, traditional oracles, enabling near-instantaneous, trustless execution of complex trading logic.
-
-![SentimentFlow Architecture](https://i.imgur.com/your-architecture-diagram.png) <!-- Replace with a real diagram -->
 
 ## 🌟 Key Features
 
